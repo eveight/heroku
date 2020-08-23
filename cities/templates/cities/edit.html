@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Изменение города{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" class="btn btn-light btn-sm">Изменить</button>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
