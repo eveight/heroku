@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Удаление поезда{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            {{ obj.name }}
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
