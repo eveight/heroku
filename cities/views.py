@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
 from django.contrib import messages
@@ -19,6 +20,7 @@ def detail(request, id):
     return render(request, 'cities/detail.html', {'obj': obj})
 
 
+@login_required
 def add(request):
     form = CityForm()
     if request.method == 'POST':
@@ -32,6 +34,7 @@ def add(request):
     return render(request, 'cities/add.html', {'form': form})
 
 
+@login_required
 def edit(request, id):
     obj = City.objects.get(id=id)
     form = CityForm(instance=obj)
@@ -45,6 +48,7 @@ def edit(request, id):
     return render(request, 'cities/edit.html', {'form': form})
 
 
+@login_required
 def delete(request, id):
     obj = City.objects.get(id=id)
     if request.method == 'POST':

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Добавление маршрута{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <form method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <p>Маршрут из г.{{ from_city }} в г.{{ to_city }}, продолжительность {{ travel_time }}</p>
+                <button type="submit" class="btn btn-light">Добавить</button>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

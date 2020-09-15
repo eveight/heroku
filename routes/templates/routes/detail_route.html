@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Маршруты{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th scope="col">Номер Маршрута</th>
+                      <th scope="col">Откуда</th>
+                      <th scope="col">Куда</th>
+                      <th scope="col">Время в пути</th>
+                      <th scope="col">Список поездов</th>
+                      <th scope="col">&nbsp</th>
+                    </tr>
+                  </thead>
+
+               <tbody>
+
+                <tr>
+                  <td><a href="{% url 'detail_route' id=route.id %}">{{ route.name }}</a></td>
+                  <td>{{ route.from_city }}</td>
+                  <td>{{ route.to_city }}</td>
+                  <td>{{ route.travel_time }}</td>
+
+                  <td>
+                      {% for tr in route.across_cities.all %}
+                        {{ tr }}</br>
+                      {% endfor %}
+                  </td>
+
+                  <td>
+                      <a href="#">
+                        <button class="btn btn-danger btn-sm"> Удалить</button>
+                      </a>
+                  </td>
+                </tr>
+
+                </tbody>
+            </table>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if obj_list.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ obj_list.previous_page_number }}">previous</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ obj_list.number }} of {{ obj_list.paginator.num_pages }}.
+                    </span>
+
+                    {% if obj_list.has_next %}
+                        <a href="?page={{ obj_list.next_page_number }}">next</a>
+                        <a href="?page={{ obj_list.paginator.num_pages }}">last &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+
+<!--    <div class="row">-->
+<!--        <div class="col">-->
+<!--            <a href="{% url 'train:add' %}">-->
+<!--                <button class="btn btn-secondary btn-sm"> Добавить новый поезд</button>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+{% endblock %}
